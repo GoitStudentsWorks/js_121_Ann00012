@@ -114,10 +114,49 @@
   border: 1px;
   border-radius: 64px;
   background-color: rgba(199, 170, 128, 1);
-  appearance: none;           /* прибирає стандартний стиль */
+  appearance: none;
   -webkit-appearance: none;
 }
 
 .wrapper-checkbox input:checked {
   border: 4px solid rgba(131, 133, 132, 1);
+}
+
+.wrapper-big-img {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wrapper-small-img {
+  display: flex;
+  gap: 16px;
+}
+
+.modal-contant .stars {
+width: 96px;
+height: 15px;
+background-image: url(../img/stars.jpg);
+margin-top: 24px;
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .modal-overlay {
+    
+  }
+  .modal-details {
+  width: 335px;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .modal-details {
+  width: 704px;
+}
+}
+
+@media (min-width: 1440px) {
+  .modal-details {
+  width: 1090px;
+}
 }
