@@ -6,7 +6,4 @@ new Accordion('.accordion-container', {
   ariaEnabled: true,
   collapse: true,
   elementClass: 'ac',
-  beforeOpen() {},
 });
-
-// import './js/faq-section';
