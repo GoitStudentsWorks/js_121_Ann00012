@@ -90,6 +90,16 @@
   margin-top: 24px;
 }
 
+.modal-contant-button:hover,
+.modal-contant-button:focus {
+  opacity: 50%;
+}
+
+.modal-contant-button:active {
+  box-shadow: none;
+}
+
+
 .modal-contant-text.dimensions {
   margin-top: 32px;
 }
