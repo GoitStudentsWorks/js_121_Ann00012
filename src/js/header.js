@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const logo = document.querySelector('.logo');
   const furnitureGrid = document.querySelector('.furniture-grid');
 
-
+ 
   let loader = document.querySelector('.loader');
   if (!loader) {
     loader = document.createElement('div');
@@ -18,22 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const showLoader = () => loader.style.display = 'block';
   const hideLoader = () => loader.style.display = 'none';
 
-
+ 
   const showToast = (message) => {
-    const toast = document.createElement('div');
-    toast.textContent = message;
-    toast.style.cssText = `
-      position: fixed; bottom: 20px; left: 50%;
-      transform: translateX(-50%);
-      background: #6b0609; color: #fff;
-      padding: 12px 24px; border-radius: 8px;
-      font-family: 'Raleway', sans-serif;
-      font-size: 16px; z-index: 3000;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    `;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
+    iziToast.error({
+      title: 'Помилка',
+      message: message,
+      position: 'topRight',
+      timeout: 3000,
+    });
   };
+
 
   const openMenu = () => {
     if (!mobileMenu || !burgerBtn || !closeBtn) return;
@@ -55,25 +49,27 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.style.display = 'none';
     burgerBtn.focus();
   };
+
   if (burgerBtn) burgerBtn.addEventListener('click', openMenu);
   if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('is-open')) closeMenu();
   });
+
   document.addEventListener('click', e => {
     if (mobileMenu && mobileMenu.classList.contains('is-open') &&
         !mobileMenu.contains(e.target) && !burgerBtn.contains(e.target)) closeMenu();
   });
 
-  let furnitureCache = null; 
+
+  let furnitureCache = null;
   navLinks.forEach(link => {
     link.addEventListener('click', async (e) => {
       const href = link.getAttribute('href');
 
-    
       if (mobileMenu && mobileMenu.classList.contains('is-open')) closeMenu();
 
-   
       if (href && href.startsWith('#')) {
         e.preventDefault();
         const targetSection = document.querySelector(href);
@@ -116,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
 
   if (logo) {
     logo.addEventListener('click', (e) => {
