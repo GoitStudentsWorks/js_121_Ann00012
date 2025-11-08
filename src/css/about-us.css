@@ -103,4 +103,5 @@ object-fit:cover;
     height: 436px;
     border-radius: var(--radius-large, 16px);
   }
+  
 }
