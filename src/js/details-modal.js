@@ -73,7 +73,7 @@ const BASE_URL = 'https://furniture-store-v2.b.goit.study/api/furnitures';
 export async function getUrl(BASE_URL) {
   try {
     const response = await axios.get(`${BASE_URL}`);
-    console.log(response);
+    console.log(response.json());
   } catch (error) {
     console.log('Помилка при отриманні користувачів:', error);
   }
@@ -140,5 +140,63 @@ export async function getUrl(BASE_URL) {
 //       });
 //   } catch (error) {
 //     console.error('Unexpected error:', error);
+//   }
+// }
+
+
+
+
+
+
+
+
+// Відгуки
+
+
+// const API_BASE = 'https://furniture-store-v2.b.goit.study/api';
+// const LIMIT = 10;
+// async function fetchFeedbacks() {
+//   const url = ${API_BASE}/feedbacks?limit=${LIMIT};
+//   try {
+//     showLoader();
+//     const response = await fetch(url, {
+//       headers: { Accept: 'application/json' },
+//     });
+
+//     if (!response.ok) throw new Error(HTTP ${response.status});
+//     const data = await response.json();
+//     return data.feedbacks.slice(0, LIMIT);
+//   } catch (error) {
+//     iziToast.error({
+//       title: 'Помилка',
+//       message: 'Не вдалося завантажити відгуки. Показано тестові дані.',
+//       position: 'topRight',
+//       timeout: 3000,
+//     });
+
+//     // fallback-дані, якщо бекенд недоступний
+//     return [
+//       {
+//         name: 'Олена Коваль',
+//         descr:
+//           'Дуже задоволена покупкою! Диван не тільки стильний, а й неймовірно зручний.',
+//         rate: 4.5,
+//       },
+//       {
+//         name: 'Андрій Шевченко',
+//         descr:
+//           'Замовляв шафу й ліжко — все приїхало раніше терміну. Якість відмінна!',
+//         rate: 4.5,
+//       },
+//       {
+//         name: 'Іванна Петренко',
+//         descr:
+//           'Меблі чудові, доставка швидка. Все прийшло вчасно і без пошкоджень!',
+//         rate: 4,
+//       },
+//     ];
+//   } finally {
+  
+//     hideLoader();
 //   }
 // }
