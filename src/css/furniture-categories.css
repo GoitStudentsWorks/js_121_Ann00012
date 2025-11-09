@@ -140,3 +140,22 @@
     url('../img/our-furniture/2-x/decor-and-accessories@2x.jpg') 2x
   );
 }
+
+
+@media screen and (min-width: 768px) {
+  .our-furniture-categories{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+}
+
+@media screen and (min-width: 1441px){
+  .our-furniture-categories{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+}
