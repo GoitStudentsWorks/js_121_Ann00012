@@ -44,7 +44,7 @@ export function renderFurnitureList(furnitureList, container) {
 }
 export function loadAndRenderFurniture() {
     try {
-        fetchFurnitureList(page, limit)
+        fetchFurnitureList(page, limit, null)
             .then(furnitureList => { 
                 renderFurnitureList(furnitureList, renderContainer);
             })

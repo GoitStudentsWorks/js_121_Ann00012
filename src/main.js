@@ -12,4 +12,5 @@ import { loadAndRenderFurnitureCategories } from './js/furniture-categories.js';
 // our-furniture section
 loadAndRenderFurnitureCategories();
 loadAndRenderFurniture();
+
 // end of our-furniture section
