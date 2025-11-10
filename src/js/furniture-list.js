@@ -30,7 +30,7 @@ export function createFurnitureCard(furniture) {
       .join('')}
           </ul>    
         <p class="our-furniture-card-price">${furniture.price} грн</p>
-        <button class="our-furniture-card-button">Детальніше</button>
+        <button class="our-furniture-card-button"data-id="${furniture._id}">Детальніше</button>
     `;
   return card;
 }
@@ -44,7 +44,7 @@ export function renderFurnitureList(furnitureList, container) {
 }
 export function loadAndRenderFurniture() {
     try {
-        fetchFurnitureList(page, limit)
+        fetchFurnitureList(page, limit, null)
             .then(furnitureList => { 
                 renderFurnitureList(furnitureList, renderContainer);
             })
@@ -59,3 +59,5 @@ export function loadAndRenderFurniture() {
         console.error('Unexpected error:', error);
     }
 }
+
+  
