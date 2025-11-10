@@ -1,4 +1,3 @@
-// feedback.js
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
@@ -6,20 +5,21 @@ import Raty from 'raty-js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+/* ------------------ Конфіг ------------------ */
 const API_BASE = 'https://furniture-store-v2.b.goit.study/api';
 const LIMIT = 10;
 
-/* DOM */
+/* ------------------ DOM ------------------ */
 const loaderEl = () => document.querySelector('.feedback__loader');
 const listEl = () => document.getElementById('feedbackList');
 const prevBtn = () => document.querySelector('.feedback__prev');
 const nextBtn = () => document.querySelector('.feedback__next');
 
-/* Loader */
+/* ------------------ Loader ------------------ */
 const showLoader = () => loaderEl()?.removeAttribute('hidden');
 const hideLoader = () => loaderEl()?.setAttribute('hidden', '');
 
-/* Rating normalize */
+/* ------------------ Округлення рейтингу ------------------ */
 function normalizeRating(v) {
   const val = Number(v);
   if (val >= 3.3 && val <= 3.7) return 3.5;
@@ -27,20 +27,24 @@ function normalizeRating(v) {
   return Math.round(val * 2) / 2;
 }
 
-/* Card template */
+/* ------------------ Шаблон картки ------------------ */
 function cardTemplate({ name, descr, rate }) {
   const normalized = normalizeRating(rate);
   return `
     <div class="swiper-slide">
       <article class="feedback-card">
-        <div class="feedback-card__stars" data-score="${normalized}"></div>
-        <p class="feedback-card__text">“${descr}”</p>
-        <p class="feedback-card__author">${name}</p>
+        <div class="feedback-card__content">
+          <div class="feedback-card__block">
+            <div class="feedback-card__stars" data-score="${normalized}"></div>
+            <p class="feedback-card__text">“${descr}”</p>
+            <p class="feedback-card__author">${name}</p>
+          </div>
+        </div>
       </article>
     </div>`;
 }
 
-/* Fetch feedbacks */
+/* ------------------ Отримання даних ------------------ */
 async function fetchFeedbacks() {
   const url = `${API_BASE}/feedbacks?limit=${LIMIT}`;
   try {
@@ -79,34 +83,40 @@ async function fetchFeedbacks() {
   }
 }
 
-/* Mount stars */
+/* ------------------ Відображення зірочок ------------------ */
 function mountStars() {
   document.querySelectorAll('.feedback-card__stars').forEach(el => {
     const score = Number(el.dataset.score || 4);
-    new Raty(el, {
+
+    const raty = new Raty(el, {
       readOnly: true,
       score,
       half: true,
-      starType: 'i',
+      starType: 'img',
       starOn: 'https://cdn.jsdelivr.net/npm/raty-js/lib/images/star-on.png',
       starOff: 'https://cdn.jsdelivr.net/npm/raty-js/lib/images/star-off.png',
       starHalf: 'https://cdn.jsdelivr.net/npm/raty-js/lib/images/star-half.png',
     });
+
+    raty.init();
   });
 }
 
-/* Sync buttons */
+/* ------------------ Синхронізація кнопок ------------------ */
 function syncArrowDisabled(swiper) {
   prevBtn().disabled = swiper.isBeginning;
   nextBtn().disabled = swiper.isEnd;
 }
 
-/* Init */
+/* ------------------ Ініціалізація ------------------ */
 async function initFeedback() {
   const feedbacks = await fetchFeedbacks();
 
   if (!feedbacks.length) {
-    listEl().innerHTML = `<div class="swiper-slide"><p>Немає відгуків 😔</p></div>`;
+    listEl().innerHTML = `
+      <div class="swiper-slide">
+        <p class="feedback-card__text">Немає відгуків 😔</p>
+      </div>`;
     return;
   }
 
@@ -114,8 +124,8 @@ async function initFeedback() {
   mountStars();
 
   const swiper = new Swiper('.feedback__swiper', {
-    slidesPerView: 1,
-    spaceBetween: 16,
+    slidesPerView: 3,
+    spaceBetween: 24,
     pagination: {
       el: '.feedback__pagination',
       clickable: true,
@@ -125,8 +135,9 @@ async function initFeedback() {
       nextEl: '.feedback__next',
     },
     breakpoints: {
+      320: { slidesPerView: 1, spaceBetween: 16 },
       768: { slidesPerView: 2, spaceBetween: 24 },
-      1440: { slidesPerView: 3, spaceBetween: 48 },
+      1440: { slidesPerView: 3, spaceBetween: 24 },
     },
     on: {
       afterInit(sw) {
@@ -139,4 +150,5 @@ async function initFeedback() {
   });
 }
 
+/* ------------------ Запуск ------------------ */
 document.addEventListener('DOMContentLoaded', initFeedback);
