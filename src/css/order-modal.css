@@ -1,5 +1,5 @@
 .order-modal {
-    padding: 20px;
+    padding: 64px 20px;
     background-color: #f0f0f0; 
     display: flex;
     align-items: center;
@@ -17,7 +17,7 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     box-sizing: border-box;
     width: 90%;
-    max-width: 335px;
+    width: 335px;
     height: 703px;
     overflow-y: auto; 
 }
@@ -42,17 +42,17 @@
 }
 
 .form-container h2 {
-    font-size: 28px;
+    font-size: 36px;
     font-weight: 700;
     text-align: center;
     margin-top: 0;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     color: #333;
 }
 .form-group { margin-bottom: 20px; }
 .form-group label {
     display: block;
-    font-size: 14px;
+    font-size: 16px;
     color: #555;
     margin-bottom: 8px;
 }
@@ -74,22 +74,24 @@
 }
 .submit-btn {
     width: 100%;
-    padding: 14px;
+    padding: 10px 14px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: #ffffff;
-    background-color: #6B0609;
+    background-color: rgba(107, 6, 9, 1);
     border: none;
     border-radius: 100px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
+.submit-btn:focus,
 .submit-btn:hover { background-color: #a32e36; }
 
 @media screen and (min-width: 768px) {
   
   .form-container {
-    max-width: 704px;
+    width: 704px;
     height: 671px;
     padding: 40px;
   }
@@ -108,7 +110,7 @@
   }
 
   .form-container h2 {
-    margin-bottom: 25px;
+    margin-bottom: 48px;
   }
 
   .form-group {
@@ -120,7 +122,11 @@
 @media screen and (min-width: 1440px) {
   
   .form-container {
-    max-width: 866px;
+    width: 866px;
     height: 718px;
+  }
+
+  .form-container h2 {
+    font-size: 48px;
   }
 }
