@@ -30,7 +30,7 @@ export function createFurnitureCard(furniture) {
       .join('')}
           </ul>    
         <p class="our-furniture-card-price">${furniture.price} грн</p>
-        <button class="our-furniture-card-button">Детальніше</button>
+        <button class="our-furniture-card-button"data-id="${furniture._id}">Детальніше</button>
     `;
   return card;
 }
