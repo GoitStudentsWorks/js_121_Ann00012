@@ -55,6 +55,7 @@ export function loadAndRenderFurnitureCategories() {
     });
 }
 async function fetchFurnitureListByFilter(page, limit, category) {
+  page =  1;
   const response = await fetch(
     `${API_URL}/furnitures?page=${page}&limit=${limit}` +
       (category ? `&category=${category}` : '')
@@ -62,28 +63,28 @@ async function fetchFurnitureListByFilter(page, limit, category) {
   return response;
 }
 categoryContainer.addEventListener('click', event => {
-    const button = event.target.closest('.our-furniture-category-card');
-    if (!button) return;
-    const selectedCategory = button.getAttribute('data-category') || null;
-    try {
-        fetchFurnitureListByFilter(page, limit, selectedCategory)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch furniture list by filter');
-                }
-                return response.json();
-            })
-            .then(furnitureList => {
-                renderFurnitureList(furnitureList, renderContainer);
-            })
-            .catch(error => {
-                console.error('Error loading filtered furniture list:', error);
-                iziToast.error({
-                    title: 'Error',
-                    message: 'Failed to load furniture list. Please try again later.',
-                });
-            });
-    } catch (error) {
-        console.error('Unexpected error:', error);
-    }
+  const button = event.target.closest('.our-furniture-category-card');
+  if (!button) return;
+  const selectedCategory = button.getAttribute('data-category') || null;
+  try {
+    fetchFurnitureListByFilter(page, limit, selectedCategory)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch furniture list by filter');
+        }
+        return response.json();
+      })
+      .then(furnitureList => {
+        renderFurnitureList(furnitureList, renderContainer);
+      })
+      .catch(error => {
+        console.error('Error loading filtered furniture list:', error);
+        iziToast.error({
+          title: 'Error',
+          message: 'Failed to load furniture list. Please try again later.',
+        });
+      });
+  } catch (error) {
+    console.error('Unexpected error:', error);
+  }
 });
