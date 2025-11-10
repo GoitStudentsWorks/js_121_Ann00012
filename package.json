@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/nine-desing-studio/",
+    "build": "vite build --base=/nine-design-studio/",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -19,9 +19,11 @@
   "dependencies": {
     "accordion-js": "^3.4.1",
     "css-star-rating": "^1.3.1",
+    "axios": "^1.13.2",
     "izitoast": "^1.4.0",
     "modern-normalize": "^3.0.1",
     "raty-js": "^4.3.0",
+    "simplelightbox": "^2.14.3",
     "swiper": "^12.0.3",
     "vite-plugin-full-reload": "^1.2.0",
     "vite-plugin-html-inject": "^1.1.2"
