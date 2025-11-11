@@ -1,4 +1,5 @@
 import 'izitoast/dist/css/iziToast.min.css';
+
 import iziToast from 'izitoast';
 
 const API_BASE_URL = 'https://furniture-store-v2.b.goit.study';
