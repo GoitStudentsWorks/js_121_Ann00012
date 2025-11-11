@@ -16,7 +16,7 @@ const descriptionModal = document.querySelector('.description-modal');
 
 const dimensionsModal = document.querySelector('.dimensions-modal');
 
-const loader = document.querySelector('.modal-overlay .loader');
+const loader = document.querySelector('.modal-loader');
 
 const modalContant = document.querySelector('.modal-contant');
 
@@ -40,13 +40,12 @@ document.addEventListener('click', event => {
 
   getUrl()
     .then(data => {
-       
       imgFirst.src = data.images[0];
       imgSecond.src = data.images[1];
       imgthird.src = data.images[2];
 
       modalContantTitle.textContent = data.name;
-      
+
       modalCategory.textContent = data.category.name;
 
       price.textContent = data.price + ' грн';
@@ -77,8 +76,6 @@ document.addEventListener('click', event => {
       });
     });
 });
-
-
 
 function remoweClassName(param) {
   param.classList.remove('is-open');
@@ -135,7 +132,7 @@ export async function getUrl() {
   } catch (error) {
     hideLoader();
     remoweClassName(modalOverlay);
-     return error;
+    return error;
   }
 }
 
@@ -150,12 +147,10 @@ window.addEventListener('resize', () => {
     }
   }
 });
-
 function showLoader() {
   loader.style.display = 'block';
   modalContant.style.display = 'none';
 }
-
 function hideLoader() {
   loader.style.display = 'none';
   if (window.innerWidth >= 1440) {
@@ -164,5 +159,3 @@ function hideLoader() {
     modalContant.style.display = 'block';
   }
 }
-  
-  
