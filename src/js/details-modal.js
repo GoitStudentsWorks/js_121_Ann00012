@@ -3,6 +3,12 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import Raty from 'raty-js';
 
+// Імпорт шляхів до зірочок
+
+import starPath from '../img/symbol-defs.svg';
+
+// Елементи DOM
+
 const modalOverlay = document.querySelector('.modal-overlay');
 
 const closeButton = document.querySelector('.close-button');
@@ -210,13 +216,13 @@ function createStars(el, score) {
     const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
 
     if (i <= Math.floor(score)) {
-      use.setAttribute('href', './img/symbol-defs.svg#icon-vector-full');
+      use.setAttribute('href', `${starPath}#icon-vector-full`);
       use.setAttribute('fill', 'rgba(8, 12, 9, 1)');
     } else if (i - 0.5 === score) {
-      use.setAttribute('href', './img/symbol-defs.svg#icon-vector-half');
+      use.setAttribute('href', `${starPath}#icon-vector-half`);
       use.setAttribute('fill', 'rgba(8, 12, 9, 1)');
     } else {
-      use.setAttribute('href', './img/symbol-defs.svg#icon-star');
+      use.setAttribute('href', `${starPath}#icon-star`);
       use.setAttribute('fill', 'rgba(8, 12, 9, 1)');
     }
 
