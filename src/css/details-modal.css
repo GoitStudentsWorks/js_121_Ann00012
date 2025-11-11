@@ -31,7 +31,7 @@
 }
 
 .modal-details .modal-contant {
-  display: none; /* спочатку приховано */
+  display: none; 
 }
 
 .close-button {
@@ -176,10 +176,14 @@
 }
 
 .modal-contant .stars {
-  width: 96px;
-  height: 15px;
-  background-image: url(../img/stars.jpg);
   margin-top: 24px;
+  display: flex;
+}
+
+.modal-contant .stars img {
+  width: 16px;
+  height: 15px;
+  fill: rgba(8, 12, 9, 1);
 }
 
 @media (min-width: 375px) and (max-width: 767px) {

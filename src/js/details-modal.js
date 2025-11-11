@@ -1,6 +1,7 @@
 import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import Raty from 'raty-js';
 
 const modalOverlay = document.querySelector('.modal-overlay');
 
@@ -15,6 +16,8 @@ const modalCategory = document.querySelector('.modal-category');
 const descriptionModal = document.querySelector('.description-modal');
 
 const dimensionsModal = document.querySelector('.dimensions-modal');
+
+const starRating = document.querySelector('.stars.star-rating');
 
 const loader = document.querySelector('.modal-loader');
 
@@ -49,6 +52,16 @@ document.addEventListener('click', event => {
       modalCategory.textContent = data.category.name;
 
       price.textContent = data.price + ' грн';
+
+      // Відображення зірок
+
+      // starRating.dataset.score = normalizeRating(data.rate);
+      // createStars();
+
+      starRating.innerHTML = '';
+      createStars(starRating, normalizeRating(data.rate));
+
+      // Відображення кольорових кіл
 
       wrapperCheckbox.innerHTML = '';
 
@@ -158,4 +171,61 @@ function hideLoader() {
   } else {
     modalContant.style.display = 'block';
   }
+}
+
+// Відображення зірок
+
+// function createStars() {
+//   document.querySelectorAll('.stars.star-rating').forEach(el => {
+//     el.innerHTML = '';
+//     const score = Number(el.dataset.score || 4);
+
+//     const raty = new Raty(el, {
+//       readOnly: true,
+//       score,
+//       half: true,
+//       starType: 'img',
+//       starOn: 'https://cdn.jsdelivr.net/npm/raty-js/lib/images/star-on.png',
+//       starOff: 'https://cdn.jsdelivr.net/npm/raty-js/lib/images/star-off.png',
+//       starHalf: 'https://cdn.jsdelivr.net/npm/raty-js/lib/images/star-half.png',
+//     });
+
+//     raty.init();
+//   });
+// }
+
+function createStars(el, score) {
+  el.innerHTML = '';
+  for (let i = 1; i <= 5; i++) {
+    const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    star.setAttribute('width', '16');
+    star.setAttribute('height', '15');
+    star.setAttribute('viewBox', '0 0 32 32');
+
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+
+    if (i <= Math.floor(score)) {
+      use.setAttribute('href', './img/symbol-defs.svg#icon-vector-full');
+      use.setAttribute('fill', 'rgba(8, 12, 9, 1)');
+    } else if (i - 0.5 === score) {
+      use.setAttribute('href', './img/symbol-defs.svg#icon-vector-half');
+      use.setAttribute('fill', 'rgba(8, 12, 9, 1)');
+    } else {
+      use.setAttribute('href', './img/symbol-defs.svg#icon-star');
+      use.setAttribute('fill', 'rgba(8, 12, 9, 1)');
+    }
+
+    star.appendChild(use);
+    el.appendChild(star);
+  }
+}
+
+
+// Округлення для зірок
+
+function normalizeRating(v) {
+  const val = Number(v);
+  if (val >= 3.3 && val <= 3.7) return 3.5;
+  if (val >= 3.8 && val <= 4.2) return 4;
+  return Math.round(val * 2) / 2;
 }
