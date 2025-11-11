@@ -106,8 +106,8 @@
   margin-bottom: 32px;
 }
 
-.our-furniture-show-more-btn {
-  display: none;
+.our-furniture-show-more-btn { 
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
