@@ -1,13 +1,13 @@
 .about {
   background-color: #f7eded; 
   padding: 64px 0;
-  padding: 0 20px;
+  
 }
 
 .about__container {
   max-width: 375px;
   margin: 0 auto;
-  
+  padding: 0 20px;
 }
 .about__text {
   max-width: 100%;
