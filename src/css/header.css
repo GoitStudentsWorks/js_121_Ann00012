@@ -25,6 +25,8 @@ body {
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
+  box-shadow: 0 0.1px 1px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
   z-index: 1010;
   padding: 0 16px;
 }
@@ -142,7 +144,7 @@ body {
 .mobile-menu.is-open {
   transform: translateY(0);
 }
-/* бекдроп */
+
 .menu-backdrop {
   position: fixed;
   top: 0;
