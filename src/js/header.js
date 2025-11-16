@@ -7,7 +7,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const furnitureGrid = document.querySelector('.furniture-grid');
   const menuBackdrop = document.querySelector('.menu-backdrop'); 
 
-  
+ 
+  const header = document.querySelector('.header');
+
+  function updateHeaderShadow() {
+    const menuOpen = mobileMenu && mobileMenu.classList.contains('is-open');
+    if (menuOpen) {
+      header.style.boxShadow = 'none';
+    } else {
+      header.style.boxShadow = '0 0.1px 1px rgba(0,0,0,0.3)';
+    }
+  }
+
+  window.addEventListener('scroll', updateHeaderShadow);
+
   let loader = document.querySelector('.loader');
   if (!loader) {
     loader = document.createElement('div');
@@ -19,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const showLoader = () => loader.style.display = 'block';
   const hideLoader = () => loader.style.display = 'none';
 
- 
   const showToast = (message) => {
     iziToast.error({
       title: 'Помилка',
@@ -29,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-
   const openMenu = () => {
     if (!mobileMenu || !burgerBtn || !closeBtn) return;
     mobileMenu.classList.add('is-open');
@@ -38,11 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
     burgerBtn.setAttribute('aria-expanded', 'true');
     burgerBtn.style.display = 'none';
     closeBtn.style.display = 'block';
-    if (menuBackdrop) menuBackdrop.classList.add('is-active'); // показати бекдроп
+    if (menuBackdrop) menuBackdrop.classList.add('is-active');
     closeBtn.focus();
+
+    updateHeaderShadow(); 
   };
 
-  
   const closeMenu = () => {
     if (!mobileMenu || !burgerBtn || !closeBtn) return;
     mobileMenu.classList.remove('is-open');
@@ -53,9 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.style.display = 'none';
     if (menuBackdrop) menuBackdrop.classList.remove('is-active'); 
     burgerBtn.focus();
+
+    updateHeaderShadow();
   };
 
- 
   if (burgerBtn) burgerBtn.addEventListener('click', openMenu);
   if (closeBtn) closeBtn.addEventListener('click', closeMenu);
   if (menuBackdrop) menuBackdrop.addEventListener('click', closeMenu);
@@ -68,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileMenu && mobileMenu.classList.contains('is-open') &&
         !mobileMenu.contains(e.target) && !burgerBtn.contains(e.target)) closeMenu();
   });
-
 
   let furnitureCache = null;
   navLinks.forEach(link => {
@@ -119,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
 
   if (logo) {
     logo.addEventListener('click', (e) => {
